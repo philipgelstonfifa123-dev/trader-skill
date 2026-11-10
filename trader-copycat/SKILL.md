@@ -120,6 +120,20 @@ business days on Form 4. To see them, open
 (or the filer's submissions list) and read the filings the user asks about.
 They are faster than a 13F but cover one stock at a time.
 
+## Who would have been worth copying
+
+```bash
+python3 "${CLAUDE_SKILL_DIR}/backtest.py" --years 5 --top 10      # every filer in filers.json
+python3 "${CLAUDE_SKILL_DIR}/backtest.py" 1067983 --years 3
+```
+
+A backtest, not a forecast: the day after each 13F-HR was filed it buys the
+top N at the copy weights, holds until the day after the next filing, and
+compares the result with SPY over the same days (Yahoo adjusted closes). It
+takes several minutes for all filers. Say every time: past results, no costs
+or taxes, the start date changes the ranking, and holdings whose ticker could
+not be matched were left out.
+
 ## Example: the reel
 
 "Copy Berkshire Hathaway, top 5." The latest 13F-HR is for the quarter ending
